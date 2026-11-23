@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1001,
+    "title": "Frontend Developer Intern",
+    "company_name": "Nusantara Cloud",
+    "category": "Software Development",
+    "candidate_required_location": "Surabaya (Hybrid)",
+    "salary": "Rp 4.500.000",
+    "tags": ["React", "TypeScript", "CSS"]
+  },
+  {
+    "id": 1002,
+    "title": "Fullstack Web Intern",
+    "company_name": "Garuda Digital",
+    "category": "Software Development",
+    "candidate_required_location": "Jakarta (Remote)",
+    "salary": "Rp 5.000.000",
+    "tags": ["React", "TypeScript", "Node.js", "PostgreSQL"]
+  },
+  {
+    "id": 1003,
+    "title": "Backend Engineer Intern",
+    "company_name": "Khatulistiwa Tech",
+    "category": "Backend",
+    "candidate_required_location": "Bandung (Onsite)",
+    "salary": "Rp 4.000.000",
+    "tags": ["Go", "Docker", "PostgreSQL", "REST API"]
+  },
+  {
+    "id": 1004,
+    "title": "UI/UX & Frontend Intern",
+    "company_name": "Batik Studio",
+    "category": "Design & Frontend",
+    "candidate_required_location": "Yogyakarta (Remote)",
+    "salary": "Rp 3.500.000",
+    "tags": ["HTML", "CSS", "Figma", "React"]
+  },
+  {
+    "id": 1005,
+    "title": "Mobile App Developer Intern",
+    "company_name": "Merdeka Pay",
+    "category": "Mobile",
+    "candidate_required_location": "Jakarta (Hybrid)",
+    "salary": "Rp 5.500.000",
+    "tags": ["React Native", "TypeScript", "REST API"]
+  },
+  {
+    "id": 1006,
+    "title": "DevOps & Cloud Intern",
+    "company_name": "Awan Biru Indonesia",
+    "category": "DevOps",
+    "candidate_required_location": "Surabaya (Remote)",
+    "salary": "Rp 4.800.000",
+    "tags": ["Docker", "Linux", "Git", "CI/CD"]
+  },
+  {
+    "id": 1007,
+    "title": "Data Engineer Intern",
+    "company_name": "Cakrawala Data",
+    "category": "Data",
+    "candidate_required_location": "Jakarta (Hybrid)",
+    "salary": "Rp 5.200.000",
+    "tags": ["Python", "SQL", "Docker", "ETL"]
+  },
+  {
+    "id": 1008,
+    "title": "Junior React Engineer Intern",
+    "company_name": "Tugu Karya Software",
+    "category": "Software Development",
+    "candidate_required_location": "Surabaya (Onsite)",
+    "salary": "Rp 3.800.000",
+    "tags": ["React", "JavaScript", "CSS", "Git"]
+  },
+  {
+    "id": 1009,
+    "title": "QA Automation Intern",
+    "company_name": "Andalas FinTech",
+    "category": "QA & Testing",
+    "candidate_required_location": "Remote",
+    "salary": "Rp 4.200.000",
+    "tags": ["TypeScript", "Playwright", "Git", "REST API"]
+  },
+  {
+    "id": 1010,
+    "title": "Software Engineer Intern (Web)",
+    "company_name": "Borneo Logistics",
+    "category": "Software Development",
+    "candidate_required_location": "Balikpapan (Hybrid)",
+    "salary": "Rp 4.600.000",
+    "tags": ["React", "TypeScript", "CSS", "Docker"]
+  },
+  {
+    "id": 1011,
+    "title": "Cybersecurity Analyst Intern",
+    "company_name": "Benteng Siber",
+    "category": "Security",
+    "candidate_required_location": "Jakarta (Onsite)",
+    "salary": "Rp 5.000.000",
+    "tags": ["Linux", "Networking", "Python", "OWASP"]
+  },
+  {
+    "id": 1012,
+    "title": "Frontend Performance Intern",
+    "company_name": "Kilat Commerce",
+    "category": "Software Development",
+    "candidate_required_location": "Remote",
+    "salary": "Rp 4.900.000",
+    "tags": ["React", "TypeScript", "HTML", "CSS"]
+  },
+  {
+    "id": 1013,
+    "title": "Backend Node.js Intern",
+    "company_name": "Svara Media",
+    "category": "Backend",
+    "candidate_required_location": "Bandung (Hybrid)",
+    "salary": "Rp 4.100.000",
+    "tags": ["Node.js", "TypeScript", "PostgreSQL", "Docker"]
+  },
+  {
+    "id": 1014,
+    "title": "Product Engineer Intern",
+    "company_name": "Rintisan Labs",
+    "category": "Software Development",
+    "candidate_required_location": "Surabaya (Remote)",
+    "salary": "Rp 4.700.000",
+    "tags": ["React", "TypeScript", "CSS", "SQL"]
+  },
+  {
+    "id": 1015,
+    "title": "AI Integration Intern",
+    "company_name": "Nusa AI",
+    "category": "Data",
+    "candidate_required_location": "Jakarta (Hybrid)",
+    "salary": "Rp 5.500.000",
+    "tags": ["Python", "TypeScript", "REST API", "React"]
+  }
+]

@@ -1,4 +1,4 @@
-import type { Application, ApplicationStatus } from '../types';
+import type { Application, ApplicationStatus, WorkMode } from '../types';
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -141,3 +141,126 @@ export function findInterviewConflicts(applications: Application[]): InterviewCo
   return conflicts;
 }
 
+export function getChecklistProgress(app: Application) {
+  const total = app.checklist.length;
+  const done = app.checklist.filter((item) => item.done).length;
+  const percent = total === 0 ? 0 : Math.round((done / total) * 100);
+  return { done, total, percent };
+}
+
+export interface TransitionInput {
+  cvVersion: string;
+  appliedDate: string;
+  interviewDateTime: string;
+  salaryOffer: string;
+  workMode: WorkMode;
+}
+
+export function validateTransition(
+  app: Application,
+  target: ApplicationStatus,
+  input: TransitionInput
+): string | null {
+  if (!STATUS_TRANSITIONS[app.status].includes(target)) {
+    return `Perpindahan status ${app.status} → ${target} tidak diizinkan.`;
+  }
+
+  if (target === 'APPLIED') {
+    if (!input.cvVersion.trim()) return 'Versi CV wajib diisi untuk status APPLIED.';
+    if (!input.appliedDate) return 'Tanggal melamar wajib diisi untuk status APPLIED.';
+  }
+
+  if (target === 'INTERVIEW') {
+    if (!input.interviewDateTime || toTime(input.interviewDateTime) === null) {
+      return 'Tanggal dan jam interview wajib diisi untuk status INTERVIEW.';
+    }
+  }
+
+  if (target === 'OFFER') {
+    const salary = Number(input.salaryOffer);
+    if (!input.salaryOffer || Number.isNaN(salary) || salary <= 0) {
+      return 'Gaji penawaran harus lebih dari 0 untuk status OFFER.';
+    }
+    if (!input.workMode) return 'Mode kerja wajib dipilih untuk status OFFER.';
+  }
+
+  return null;
+}
+
+export function appendLog(
+  app: Application,
+  message: string,
+  timestamp = new Date().toISOString()
+): Application {
+  return {
+    ...app,
+    activityLogs: [
+      ...app.activityLogs,
+      { id: crypto.randomUUID(), timestamp, message },
+    ],
+  };
+}
+
+export function applyTransition(
+  app: Application,
+  target: ApplicationStatus,
+  input: TransitionInput
+): Application {
+  const nowIso = new Date().toISOString();
+  const patch: Partial<Application> = {};
+
+  if (target === 'APPLIED') {
+    patch.cvVersion = input.cvVersion.trim();
+    patch.appliedDate = input.appliedDate;
+  }
+  if (target === 'INTERVIEW') {
+    patch.interviewDateTime = input.interviewDateTime;
+  }
+  if (target === 'OFFER') {
+    patch.salaryOffer = Number(input.salaryOffer);
+    patch.workMode = input.workMode;
+  }
+
+  return appendLog(
+    { ...app, ...patch, status: target, lastUpdatedAt: nowIso },
+    `Status berubah dari ${app.status} ke ${target}.`,
+    nowIso
+  );
+}
+
+export function addChecklistItem(app: Application, text: string): Application {
+  const item = { id: crypto.randomUUID(), text: text.trim(), done: false };
+  return appendLog(
+    { ...app, checklist: [...app.checklist, item] },
+    `Item checklist ditambahkan: "${item.text}".`
+  );
+}
+
+export function toggleChecklistItem(app: Application, itemId: string): Application {
+  const target = app.checklist.find((item) => item.id === itemId);
+  if (!target) return app;
+
+  return appendLog(
+    {
+      ...app,
+      checklist: app.checklist.map((item) =>
+        item.id === itemId ? { ...item, done: !item.done } : item
+      ),
+    },
+    `Item checklist "${target.text}" ${target.done ? 'dibuka kembali' : 'diselesaikan'}.`
+  );
+}
+
+export function removeChecklistItem(app: Application, itemId: string): Application {
+  const target = app.checklist.find((item) => item.id === itemId);
+  if (!target) return app;
+
+  return appendLog(
+    { ...app, checklist: app.checklist.filter((item) => item.id !== itemId) },
+    `Item checklist dihapus: "${target.text}".`
+  );
+}
+
+export function addManualNote(app: Application, note: string): Application {
+  return appendLog(app, `Catatan Kapten: ${note.trim()}`);
+}

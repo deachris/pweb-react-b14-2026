@@ -76,6 +76,12 @@ export function App() {
     setApplications((prev) => [newApp, ...prev]);
   };
 
+  const handleUpdateApplication = (id: string, updater: ApplicationUpdater) => {
+    setApplications((prev) =>
+      prev.map((app) => (app.id === id ? updater(app) : app))
+    );
+  };  
+
   const handleSimulateDays = (days: number) => {
     setApplications((prev) => prev.map((app) => shiftLastUpdated(app, days)));
   };
@@ -149,13 +155,12 @@ export function App() {
         )}
 
         {activeTab === 'warroom' && (
-          <div className="state-box">
-            <h3>Slot Fitur 3–6 (Anggota 2 & 3)</h3>
-            <p className="muted-text">
-              Total lamaran tersimpan di localStorage saat ini:{' '}
-              <strong>{applications.length}</strong>
-            </p>
-          </div>
+          <WarRoom
+            applications={applications}
+            kaptenSkills={kaptenSkills}
+            onUpdateApplication={handleUpdateApplication}
+            onSimulateDays={handleSimulateDays}
+          />
         )}
 
         {activeTab === 'comparator' && (

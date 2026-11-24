@@ -109,3 +109,111 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Latihan interview */
+.interview-prep,
+.offer-dashboard,
+.offer-comparator {
+  display: grid;
+  gap: 16px;
+}
+
+.interview-timer {
+  font-size: 3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.interview-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Statistik lamaran */
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.dashboard-stat-card h3 {
+  font-size: 1rem;
+}
+
+.dashboard-stat-card > strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.8rem;
+}
+
+/* Pemilihan offer */
+.offer-selectors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.offer-selectors label {
+  display: grid;
+  gap: 8px;
+}
+
+/* Tabel perbandingan offer */
+.offer-table-wrapper {
+  overflow-x: auto;
+}
+
+.offer-comparison-table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+}
+
+.offer-comparison-table th,
+.offer-comparison-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+/* Rekomendasi offer */
+.offer-recommendation {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* Notifikasi penghapusan */
+.undo-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 100;
+  display: grid;
+  gap: 10px;
+  max-width: min(430px, calc(100vw - 40px));
+  padding: 20px;
+  border: 2px solid #334155;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #17212f;
+  box-shadow: 0 8px 28px #0002;
+}
+
+/* Tombol hapus lamaran */
+.delete-application-button {
+  color: #b91c1c;
+  border-color: #b91c1c;
+}
+
+/* Tampilan layar kecil */
+@media (max-width: 640px) {
+  .offer-selectors {
+    grid-template-columns: 1fr;
+  }
+}

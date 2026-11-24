@@ -21,6 +21,7 @@ interface WarRoomProps {
   kaptenSkills: string[];
   onUpdateApplication: (id: string, updater: ApplicationUpdater) => void;
   onSimulateDays: (days: number) => void;
+  onDeleteApplication: (id: string) => void;
 }
 
 export function WarRoom({
@@ -28,6 +29,7 @@ export function WarRoom({
   kaptenSkills,
   onUpdateApplication,
   onSimulateDays,
+  onDeleteApplication,
 }: WarRoomProps) {
   const [keyword, setKeyword] = useState('');
   const debouncedKeyword = useDebounce(keyword, 400);
@@ -46,6 +48,7 @@ export function WarRoom({
         kaptenSkills={kaptenSkills}
         onBack={() => setSelectedId(null)}
         onUpdate={(updater) => onUpdateApplication(selectedApp.id, updater)}
+        onDelete={() => {onDeleteApplication(selectedApp.id); setSelectedId(null);}}
       />
     );
   }
@@ -192,6 +195,14 @@ export function WarRoom({
                       onClick={() => setSelectedId(app.id)}
                     >
                       Kelola Lamaran
+                    </button>
+
+                      <button
+                      type="button"
+                      className="btn btn-outline delete-application-button"
+                      onClick={() => onDeleteApplication(app.id)}
+                    >
+                      Hapus Lamaran
                     </button>
                   </div>
 

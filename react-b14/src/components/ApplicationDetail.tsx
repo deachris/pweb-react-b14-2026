@@ -10,12 +10,14 @@ import {
 import { StatusTransitionPanel } from './StatusTransitionPanel';
 import { ChecklistPanel } from './ChecklistPanel';
 import { ActivityLogPanel } from './ActivityLogPanel';
+import { InterviewPrepTimer } from './InterviewPrepTimer';
 
 interface ApplicationDetailProps {
   application: Application;
   kaptenSkills: string[];
   onBack: () => void;
   onUpdate: (updater: ApplicationUpdater) => void;
+  onDelete: () => void;
 }
 
 export function ApplicationDetail({
@@ -23,6 +25,7 @@ export function ApplicationDetail({
   kaptenSkills,
   onBack,
   onUpdate,
+  onDelete,
 }: ApplicationDetailProps) {
   const match = calculateSkillMatch(kaptenSkills, application.requiredSkills);
   const ghosting = isGhostingRisk(application);
@@ -90,6 +93,16 @@ export function ApplicationDetail({
         />
         <ChecklistPanel application={application} onUpdate={onUpdate} />
       </div>
+
+      <InterviewPrepTimer key={application.id} />
+
+      <button
+        type="button"
+        className="btn btn-outline delete-application-button"
+        onClick={onDelete}
+      >
+        Hapus Lamaran
+      </button>
 
       <ActivityLogPanel application={application} onUpdate={onUpdate} />
     </section>

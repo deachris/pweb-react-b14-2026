@@ -18,7 +18,10 @@ export const STATUS_TRANSITIONS: Record<ApplicationStatus, ApplicationStatus[]> 
 
 export const ALL_STATUSES = Object.keys(STATUS_TRANSITIONS) as ApplicationStatus[];
 
-const GHOSTING_TRACKED: ApplicationStatus[] = ['APPLIED', 'SCREENING', 'INTERVIEW'];
+const GHOSTING_TRACKED: ApplicationStatus[] = [
+  'APPLIED',
+  'SCREENING',
+];
 
 function toTime(value?: string): number | null {
   if (!value) return null;

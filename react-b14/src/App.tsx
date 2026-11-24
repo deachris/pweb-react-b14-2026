@@ -8,7 +8,13 @@ import {
 import { SkillProfileBar } from './components/SkillProfileBar';
 import { JobCatalog } from './components/JobCatalog';
 import { ManualApplicationForm } from './components/ManualApplicationForm';
+import {
+  shiftLastUpdated,
+  type ApplicationUpdater,
+} from './utils/warRoomHelpers';
+import { WarRoom } from './components/WarRoom';
 import './App.css';
+import logo from './assets/logo.png';
 
 type ActiveTab = 'catalog' | 'manual' | 'warroom' | 'comparator';
 
@@ -70,13 +76,17 @@ export function App() {
     setApplications((prev) => [newApp, ...prev]);
   };
 
+  const handleSimulateDays = (days: number) => {
+    setApplications((prev) => prev.map((app) => shiftLastUpdated(app, days)));
+  };
+
   return (
     <div className="app-shell">
       {/* Sticky Header ala Catalog Store */}
       <header className="sticky-header">
         <div className="header-inner">
           <div className="brand">
-            <span className="brand-logo">AM</span>
+            <img src={logo} alt="Logo Aku Mw Magang" className="brand-logo-img" />
             <div>
               <h1>Aku Mw Magang</h1>
               <span className="brand-sub">Internship Catalog & Tracker</span>

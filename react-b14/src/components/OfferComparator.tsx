@@ -83,7 +83,7 @@ export function OfferComparator({
       <div className="panel-box offer-comparator">
         <h2>Offer Comparator</h2>
 
-        <div className="offer-offer-selectors">
+        <div className="offer-selectors">
           <label>
             Offer A
 

@@ -74,18 +74,29 @@ export interface WarRoomFilters {
   sort: SortOption;
 }
 
+
 function compareInterview(a: Application, b: Application, now: number): number {
   const timeA = toTime(a.interviewDateTime);
   const timeB = toTime(b.interviewDateTime);
+
   if (timeA === null && timeB === null) return 0;
   if (timeA === null) return 1;
   if (timeB === null) return -1;
 
   const upcomingA = timeA >= now;
   const upcomingB = timeB >= now;
-  if (upcomingA !== upcomingB) return upcomingA ? -1 : 1;
-  return upcomingA ? timeA - timeB : timeB - timeA;
+
+  if (upcomingA !== upcomingB) {
+    return upcomingA ? -1 : 1;
+  }
+
+  if (upcomingA) {
+    return timeA - timeB;
+  }
+
+  return timeB - timeA;
 }
+
 
 export function filterAndSortApplications(
   applications: Application[],

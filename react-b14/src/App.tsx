@@ -8,10 +8,7 @@ import {
 import { SkillProfileBar } from './components/SkillProfileBar';
 import { JobCatalog } from './components/JobCatalog';
 import { ManualApplicationForm } from './components/ManualApplicationForm';
-import {
-  shiftLastUpdated,
-  type ApplicationUpdater,
-} from './utils/warRoomHelpers';
+import { type ApplicationUpdater } from './utils/warRoomHelpers';
 import { WarRoom } from './components/WarRoom';
 import { useUndoDelete } from './hooks/useUndoDelete';
 import { UndoDeleteToast } from './components/UndoDeleteToast';
@@ -101,20 +98,6 @@ export function App() {
       prev.map((app) => (app.id === id ? updater(app) : app))
     );
   };
-
-  const handleSimulateDays = (days: number) => {
-  setApplications((prev) =>
-    prev.map((app) => {
-      const canSimulate =
-        app.status === 'APPLIED' ||
-        app.status === 'SCREENING';
-
-      return canSimulate
-        ? shiftLastUpdated(app, days)
-        : app;
-    })
-  );
-};
 
   return (
     <div className="app-shell">
@@ -210,7 +193,6 @@ export function App() {
             applications={applications}
             kaptenSkills={kaptenSkills}
             onUpdateApplication={handleUpdateApplication}
-            onSimulateDays={handleSimulateDays}
             onDeleteApplication={deleteApplication}
           />
         )}

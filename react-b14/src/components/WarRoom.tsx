@@ -20,7 +20,6 @@ interface WarRoomProps {
   applications: Application[];
   kaptenSkills: string[];
   onUpdateApplication: (id: string, updater: ApplicationUpdater) => void;
-  onSimulateDays: (days: number) => void;
   onDeleteApplication: (id: string) => void;
 }
 
@@ -28,7 +27,6 @@ export function WarRoom({
   applications,
   kaptenSkills,
   onUpdateApplication,
-  onSimulateDays,
   onDeleteApplication,
 }: WarRoomProps) {
   const [keyword, setKeyword] = useState('');
@@ -37,7 +35,7 @@ export function WarRoom({
   const [ghostingOnly, setGhostingOnly] = useState(false);
   const [sort, setSort] = useState<SortOption>('newest');
   const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [now] = useState(() => Date.now());
+  const now = Date.now();
 
   const selectedApp = applications.find((app) => app.id === selectedId);
 
@@ -123,14 +121,6 @@ export function WarRoom({
             />
             Hanya Rawan Ghosting ({ghostingCount})
           </label>
-
-          <button
-            type="button"
-            className="btn btn-sm btn-outline"
-            onClick={() => onSimulateDays(15)}
-          >
-            Simulasi +15 Hari
-          </button>
         </div>
       </div>
 
@@ -188,6 +178,22 @@ export function WarRoom({
                       </strong>
                     </span>
                   </div>
+
+                  {(app.interviewDateTime || app.salaryOffer !== undefined) && (
+                    <div className="card-schedule">
+                      {app.interviewDateTime && (
+                        <p className="muted-text-sm">
+                          Interview: {formatDateTime(app.interviewDateTime)}
+                        </p>
+                      )}
+                      {app.salaryOffer !== undefined && (
+                        <p className="muted-text-sm">
+                          Offer: {formatRupiah(app.salaryOffer)}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
                   <div className="card-footer">
                     <button
                       type="button"
@@ -197,25 +203,14 @@ export function WarRoom({
                       Kelola Lamaran
                     </button>
 
-                      <button
+                    <button
                       type="button"
-                      className="btn btn-outline delete-application-button"
+                      className="btn btn-full btn-outline delete-application-button"
                       onClick={() => onDeleteApplication(app.id)}
                     >
                       Hapus Lamaran
                     </button>
                   </div>
-
-                  {app.interviewDateTime && (
-                    <p className="muted-text-sm">
-                      Interview: {formatDateTime(app.interviewDateTime)}
-                    </p>
-                  )}
-                  {app.salaryOffer !== undefined && (
-                    <p className="muted-text-sm">
-                      Offer: {formatRupiah(app.salaryOffer)}
-                    </p>
-                  )}
                 </div>
               </article>
             );

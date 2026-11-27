@@ -501,6 +501,10 @@ body {
   margin-top: 1rem;
 }
 
+.state-box h2 {
+  color: #3b2d21;
+}
+
 .state-error {
   border-color: #fca5a5;
   background-color: #fffafa;
@@ -529,7 +533,7 @@ body {
   }
 }
 
-/* html,
+html,
 body,
 #root {
   width: 100%;
@@ -540,7 +544,7 @@ body,
 
 #root {
   max-width: none;
-} */
+}
 
 /* War Room */
 .warroom-section {
@@ -776,4 +780,154 @@ body,
 
 .icon-btn:hover {
   border-color: var(--accent);
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-stat-card {
+  text-align: center;
+  padding: 1.1rem 1rem;
+}
+
+.dashboard-stat-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.dashboard-stat-card > strong {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.card-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1rem; /* jarak ke garis footer */
+}
+
+.card-schedule > * {
+  margin: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--bg-page);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.schedule-line {
+  justify-content: space-between;
+}
+
+.card-footer {
+  margin-top: auto;
+  padding-top: 0.85rem;
+}
+
+.detail-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.detail-topbar .delete-application-button {
+  background-color: #ffffff;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+.detail-topbar .delete-application-button:hover {
+  background-color: var(--red-bg);
+  border-color: #b91c1c;
+}
+
+
+.offer-dashboard,
+.offer-comparator {
+  display: grid;
+  gap: 16px;
+}
+
+/* Dropdown berdampingan */
+.offer-selectors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.offer-selectors label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Tabel */
+.offer-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+.offer-comparison-table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+}
+
+.offer-comparison-table th,
+.offer-comparison-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #cbd5e1;
+}
+
+.offer-comparison-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.offer-comparison-table thead th {
+  background-color: var(--bg-soft);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.offer-comparison-table tbody th {
+  width: 26%;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Badge Rekomendasi Terbaik */
+.offer-recommendation {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background-color: var(--accent);
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.offer-comparator > p[role='status'] {
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .offer-selectors {
+    grid-template-columns: 1fr;
+  }
 }
